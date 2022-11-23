@@ -1,0 +1,35 @@
+
+
+les pads sont dans un store key=>value
+
+on a différents motifs de KEY comme suit : 
+
+pad:<nom du pad> est la clé principale décrivant un pad, un json comprenant entre autre : 
+"head":0 > numéro de dernière révision
+"chatHead":-1 > numéro de dernier message de chat, -1 pour aucun
+"publicStatus":false > no idea :/ (mais pas le status privé de mypads) 
+"passwordHash":false > no idea :/ (mais pas le password de mypads) 
+
+
+pad:<nom du pad>:revs:<0-n>  sont les révisions du pad : qui a écrit quoi
+
+pad:<nom du pad>:chat:<0-n> sont les  messages de chat d'un pad donné 
+la valeur est un json avec 
+text: le texte du message 
+userId : le user-id l'ayant émis,  (format a.<random>)
+time: le timestamp unix du message
+
+token2author:t.<random> contient une chaine "a.<random>" (inconnu)
+			 >peut-etre pour reconnaitre quelqu'un d'après son cookie?
+
+comments:<nom du pad> contiendrais les commentaires associés à un pad, sous forme d'un hash complexe (voir plugin comments?) 
+
+mypads: l'appli de framasoft
+
+mypads:conf:<key> la configuration globale
+mypads:group:<groupname> la configuartion d'un group ave cses admins, 
+mypads:pad:<pad name> les noms des pads utilisant mypads : attention la plupart sont donc privés ! 
+mypads:user:<username> les noms d'utilisateurs et leurs paramètres (nom, mdp, id, etc.
+
+
+

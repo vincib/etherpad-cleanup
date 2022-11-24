@@ -61,8 +61,6 @@ function force_delete_pad($store,$pad) {
 }
 
 
-
-/*
 echo "Step 1: enumerate the pads\n";
 $store->enumerate("pad:");
 $f=fopen("pads.txt","wb");
@@ -123,7 +121,6 @@ while ($s=fgets($f,1024)) {
 }
 fclose($f);
 fclose($g);
-*/
 
 $now=date("Y-m-d");
 

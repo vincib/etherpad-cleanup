@@ -11,7 +11,7 @@ require_once("driver-redis.php");
 $dsn="mysql:host=localhost;dbname=publicpad";
 $store=new mysqlpads($dsn,"dblogin","dbpassword");
 
-// could be this is you use redis store instead:
+// could be this is you use redis store instead (Need phpredis library):
 // $store=new redispads("127.0.0.1",6379);
 
 
@@ -128,17 +128,16 @@ echo "Step 3: delete and archive old pads.\n";
 $f=fopen("pads-archive.txt","rb");
 
 // prepare the data folders:
-@mkdir($dataroot."/p");
-@mkdir($dataroot."/old-pad-exports");
-@mkdir($dataroot."/private-pads");
+@mkdir($dataroot."/p", 0777, true);
+@mkdir($dataroot."/old-pad-exports", 0777, true);
+@mkdir($dataroot."/private-pads", 0777, true);
 touch($dataroot."/private-pads/index.html");
 
 while ($s=fgets($f,1024)) {
     list($ts,$mypad,$pad) = explode(" ",trim($s),3);
     // export the pad as HTML & etherpad
-    $exporthtml = file_get_contents("https://pad.lqdn.fr/p/".urlencode($pad)."/export/html");
-    https://pad.lqdn.fr/p/cotentin2022/export/etherpad
-    $exportetherpad = file_get_contents("https://pad.lqdn.fr/p/".urlencode($pad)."/export/etherpad");
+    $exporthtml = file_get_contents($padurl."p/".urlencode($pad)."/export/html");
+    $exportetherpad = file_get_contents($padurl."p/".urlencode($pad)."/export/etherpad");
     if (! $exporthtml || !$exportetherpad) {
         echo "Can't export pad '".$pad."', skipping...\n";
     } else {
